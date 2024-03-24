@@ -10,7 +10,7 @@ import pandas as pd
 
 import numpy as np
 
-data = pd.read_csv("SAA2_WC_2017_metocean_10min_avg.csv")
+data = pd.read_csv("data/SAA2_WC_2017_metocean_10min_avg.csv")
 data["TIME_SERVER"] = pd.to_datetime(data["TIME_SERVER"], format = "%Y/%m/%d %H:%M")
 data["TIME_GPS"] = pd.to_datetime(data["TIME_GPS"], format = "%H:%M:%S").dt.time
 data.set_index("TIME_SERVER", inplace = True)
@@ -35,6 +35,25 @@ plt.xticks(rotation = 90)
 ax.set_title("Temperature over Time")
 ax.set_xlabel("Time")
 ax.set_ylabel("Temperature (degrees c)")
+
+fig, ax = plt.subplots()
+bins = np.arange(30, 35, 0.5)
+ax.hist(data_sample["TSG_SALINITY"], bins = bins)
+ax.set_xlabel("Salinity")
+ax.set_ylabel("# of observations")
+
+data_sample.set_index("LATITUDE", inplace = True)
+plt.style.use("default")
+fig, ax = plt.subplots()
+ax.scatter(data_sample["WIND_SPEED_TRUE"], data_sample["AIR_TEMPERATURE"], c = data_sample.index)
+ax.set_xlabel("Wind Speed (m/s)")
+ax.set_ylabel("Air Temperature (degrees c)")
+
+fig.savefig("wind_speed-air_temp.png", dpi = 200)
+
+
+
+
 
 
 
