@@ -23,8 +23,6 @@ def ddmm2dd(ddmm):
 data["LONGITUDE"] = ddmm2dd(data["LONGITUDE"])
 data["LATITUDE"] = ddmm2dd(data["LATITUDE"])
 
-# data["LONGITUDE"] = data["LONGITUDE"].apply(ddmm2dd)
-# data["LATITUDE"] = data["LATITUDE"].apply(ddmm2dd)
 
 data_sample = data["2017-06-28 17:10:00":"2017-07-04 23:50:00"]
 
